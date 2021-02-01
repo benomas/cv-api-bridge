@@ -24,4 +24,4 @@ foreach($response->getHeaders() as $header=>$value)
     header("$header: $value[0]");
 
 $body = $response->getBody();
-echo "[$body]";
+echo $body;

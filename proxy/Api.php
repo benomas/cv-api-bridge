@@ -34,13 +34,14 @@ class Api{
 
   public function loadApiRootPath(){
     $apiRootPath = preg_replace('/(.*)\/(.+)\.php/', '$1', $_SERVER['DOCUMENT_URI']??'/');
+
     return $this->setApiRootPath($apiRootPath);
   }
 
   public function loadRequestQueryString(){
-    $requestPath = preg_replace('/(.+)?\?(.*)/', '$2', $_SERVER['REQUEST_URI']??'');
+    $segments = explode('?', $_SERVER['REQUEST_URI']);
     
-    return $this->setRequestQueryString($requestPath);
+    return $this->setRequestQueryString($segments[1]??'');
   }
 
   public function loadRequestPath(){
