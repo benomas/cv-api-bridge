@@ -8,14 +8,14 @@ $proxyApi->setApiProxiedRootPath('https://w-services.duckdns.org/api');
 
 $client = new GuzzleHttp\Client();
 
+$headers = $proxyApi->getHeaders() ;
+$headers['Authorization'] = $proxyApi->getBearerToken();
+
 $response = $client->request(
-  'GET', 
+  $proxyApi->getHttpMethod(), 
   "{$proxyApi->getApiProxiedRootPath()}{$proxyApi->getRequestPath()}?{$proxyApi->getRequestQueryString()}",
   [
-    'headers' => [
-      'Content-Type'  => 'application/json',
-      'Authorization' => $proxyApi->getBearerToken()
-    ] 
+    'headers' => $headers 
   ]
 );
 

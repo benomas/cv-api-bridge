@@ -27,7 +27,9 @@ class Api{
       ->fixMode()
       ->fixRequestPath()
       ->loadHeaderProccesorInstance()
-      ->loadBearerToken();
+      ->loadBearerToken()
+      ->loadMethod()
+      ->setHeaders($this->getHeaderProccesorInstance()->getHeaders());
   }
 // [Specific Logic]
   public function builder(){
@@ -67,9 +69,11 @@ class Api{
   }
 
   public function loadHeaderProccesorInstance (){
-    $headerProccesorClass = $this->getHeadersProccesors()[$this->getMode()??'cv-mode'];
+    $headerProccesorClass    = $this->getHeadersProccesors()[$this->getMode()??'cv-mode'];
+    $headerProccesorInstance = new $headerProccesorClass();
+    $headerProccesorInstance->build();
 
-    return $this->setHeaderProccesorInstance(new $headerProccesorClass());
+    return $this->setHeaderProccesorInstance($headerProccesorInstance);
   }
 
   public function loadBearerToken(){
@@ -79,6 +83,10 @@ class Api{
     }
 
     return $this;
+  }
+
+  public function loadMethod(){
+    return $this->setHttpMethod($_SERVER['REQUEST_METHOD']??'GET');
   }
 // [End Specific Logic]
 

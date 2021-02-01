@@ -7,6 +7,7 @@ class BaseHeaderProccessor{
   protected $httpContentType;
   protected $httpUserAgent;
   protected $httpHost;
+  protected $headers;
 
   public function  __construct(){
   }
@@ -29,6 +30,10 @@ class BaseHeaderProccessor{
 
   public function getHttpHost(){
     return $this->httpHost??null;
+  }
+
+  public function getHeaders(){
+    return $this->headers??null;
   }
 // [End Getters]
 
@@ -54,6 +59,12 @@ class BaseHeaderProccessor{
   public function setHttpHost($httpHost=null){
     $this->httpHost = $httpHost??null;
 
+    return $this;
+  }
+
+  public function setHeaders($headers=null){
+    $this->headers = $headers??null;
+    
     return $this;
   }
 // [End Setters]
