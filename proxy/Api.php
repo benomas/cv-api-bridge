@@ -28,6 +28,7 @@ class Api{
       ->fixRequestPath()
       ->loadHeaderProccesorInstance()
       ->loadBearerToken()
+      ->loadApiProxiedRootPath()
       ->loadMethod()
       ->setHeaders($this->getHeaderProccesorInstance()->getHeaders());
   }
@@ -80,6 +81,15 @@ class Api{
     if(file_exists(__DIR__.'/../.env')){
       $env =  json_decode(file_get_contents(__DIR__.'/../.env'),1);
       return $this->setBearerToken($env['bearerToken']??'');
+    }
+
+    return $this;
+  }
+
+  public function loadApiProxiedRootPath(){
+    if(file_exists(__DIR__.'/../.env')){
+      $env =  json_decode(file_get_contents(__DIR__.'/../.env'),1);
+      return $this->setApiProxiedRootPath($env['apiUrl']??'');
     }
 
     return $this;

@@ -3,12 +3,9 @@
 require __DIR__.'/../vendor/autoload.php';
 
 $proxyApi = new \Proxy\Api();
+$client   = new GuzzleHttp\Client();
+$headers  = $proxyApi->getHeaders();
 
-$proxyApi->setApiProxiedRootPath('https://w-services.duckdns.org/api');
-
-$client = new GuzzleHttp\Client();
-
-$headers = $proxyApi->getHeaders() ;
 $headers['Authorization'] = $proxyApi->getBearerToken();
 
 $response = $client->request(
