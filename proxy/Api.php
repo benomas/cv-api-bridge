@@ -14,6 +14,7 @@ class Api{
   protected $requestQueryString;
   protected $apiProxiedRootPath;
   protected $headerProccesorInstance;
+  protected $bearerToken;
 
   protected $headersProccesors = [
     'cv-mode'=>'Proxy\HeaderProccessors\CvHeaderProccessor'
@@ -25,7 +26,8 @@ class Api{
       ->loadRequestPath()
       ->fixMode()
       ->fixRequestPath()
-      ->loadHeaderProccesorInstance();
+      ->loadHeaderProccesorInstance()
+      ->loadBearerToken();
   }
 // [Specific Logic]
   public function builder(){
@@ -68,6 +70,15 @@ class Api{
     $headerProccesorClass = $this->getHeadersProccesors()[$this->getMode()??'cv-mode'];
 
     return $this->setHeaderProccesorInstance(new $headerProccesorClass());
+  }
+
+  public function loadBearerToken(){
+    if(file_exists(__DIR__.'/../.env')){
+      $env =  json_decode(file_get_contents(__DIR__.'/../.env'),1);
+      return $this->setBearerToken($env['bearerToken']??'');
+    }
+
+    return $this;
   }
 // [End Specific Logic]
 
@@ -118,6 +129,10 @@ class Api{
 
   public function getHeadersProccesors(){
     return $this->headersProccesors??null;
+  }
+
+  public function getBearerToken(){
+    return $this->bearerToken??null;
   }
 // [End Getters]
 
@@ -190,6 +205,12 @@ class Api{
 
   public function setHeadersProccesors($headersProccesors=null){
     $this->headersProccesors = $headersProccesors??null;
+
+    return $this;
+  }
+
+  public function setBearerToken($bearerToken=null){
+    $this->bearerToken = $bearerToken??null;
 
     return $this;
   }
