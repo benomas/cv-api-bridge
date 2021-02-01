@@ -1,16 +1,25 @@
 {
-    "name": "benomas/cv-api-bridge",
-    "description": "This project works as a bridge to and api, given you change to hide how and where the final request comes, so you can incluye cv-api-bridge inside your framework or php folders, and then call it with ajax without crosdomain",
-    "type": "package",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Benomas",
-            "email": "benomas@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-        "guzzlehttp/guzzle": "^7.0"
-    }
+	"name": "benomas/cv-api-bridge",
+	"description": "This project works as a bridge to and api, given you change to hide how and where the final request comes, so you can incluye cv-api-bridge inside your framework or php folders, and then call it with ajax without crosdomain",
+	"type": "package",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Benomas",
+			"email": "benomas@gmail.com"
+		}
+	],
+	"autoload": {
+		"classmap": [
+      "proxy"
+		],
+		"psr-4": {
+		},
+		"files": [
+		]
+	},
+	"minimum-stability": "stable",
+	"require": {
+		"guzzlehttp/guzzle": "^7.0"
+	}
 }

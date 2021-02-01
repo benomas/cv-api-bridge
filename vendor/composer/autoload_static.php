@@ -52,6 +52,9 @@ class ComposerStaticInit0be72b8e5b7ccf97dfbcbd3435b636c9
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Proxy\\Api' => __DIR__ . '/../..' . '/proxy/Api.php',
+        'Proxy\\HeaderProccessors\\BaseHeaderProccessor' => __DIR__ . '/../..' . '/proxy/HeaderProcessors/BaseHeaderProccessor.php',
+        'Proxy\\HeaderProccessors\\CvHeaderProccessor' => __DIR__ . '/../..' . '/proxy/HeaderProcessors/CvHeaderProccessor.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

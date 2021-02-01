@@ -7,4 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Proxy\\Api' => $baseDir . '/proxy/Api.php',
+    'Proxy\\HeaderProccessors\\BaseHeaderProccessor' => $baseDir . '/proxy/HeaderProcessors/BaseHeaderProccessor.php',
+    'Proxy\\HeaderProccessors\\CvHeaderProccessor' => $baseDir . '/proxy/HeaderProcessors/CvHeaderProccessor.php',
 );
