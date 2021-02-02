@@ -38,8 +38,8 @@ class Api{
   }
 
   public function loadApiRootPath(){
-    $apiRootPath = preg_replace('/(.*)\/(.+)\.php/', '$1', $_SERVER['DOCUMENT_URI']??'/');
-
+    $apiRootPath = preg_replace('/(.*)\/(.+)\.php/', '$1', $_SERVER['DOCUMENT_URI'] ?? $_SERVER['SCRIPT_NAME']??'/');
+    
     return $this->setApiRootPath($apiRootPath);
   }
 
