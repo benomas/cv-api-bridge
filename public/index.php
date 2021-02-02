@@ -1,5 +1,7 @@
 <?php
 
+file_put_contents('test.txt','test');
+
 require __DIR__.'/../vendor/autoload.php';
 $proxyApi = new \Proxy\Api();
 $client   = new GuzzleHttp\Client();
@@ -11,7 +13,7 @@ $options = ['headers'=> $headers];
 
 if($proxyApi->getHttpMethod() === 'POST'){
   $postdata = json_decode(file_get_contents("php://input"),1);
-  $options  = ['form_params'=> $postdata ?? []];
+  $options['form_params']=$postdata ?? [];
 }
 
 try {
