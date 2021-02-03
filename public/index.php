@@ -21,6 +21,7 @@ if($proxyApi->getHttpMethod() === 'POST'){
 
     $options['form_params']['source'] = $_POST['form_name']??'undefined';
   }
+  //file_put_contents('test.txt',json_encode($options['form_params']));
 }
 
 try {
