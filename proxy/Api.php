@@ -17,7 +17,8 @@ class Api{
   protected $bearerToken;
 
   protected $headersProccesors = [
-    'cv-mode'=>'Proxy\HeaderProccessors\CvHeaderProccessor'
+    'cv-mode'=>'Proxy\HeaderProccessors\CvHeaderProccessor',
+    'cv-elementor-web-hook-mode'=>'Proxy\HeaderProccessors\CvHeaderProccessor'
   ];
 
   public function __construct(){

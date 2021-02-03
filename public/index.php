@@ -1,7 +1,5 @@
 <?php
 
-file_put_contents('test.txt','test');
-
 require __DIR__.'/../vendor/autoload.php';
 $proxyApi = new \Proxy\Api();
 $client   = new GuzzleHttp\Client();
@@ -12,8 +10,18 @@ $headers['Authorization'] = $proxyApi->getBearerToken();
 $options = ['headers'=> $headers];
 
 if($proxyApi->getHttpMethod() === 'POST'){
-  $postdata = json_decode(file_get_contents("php://input"),1);
-  $options['form_params']=$postdata ?? [];
+  $options['form_params']=[];
+
+  if($proxyApi->getMode() === 'cv-mode')
+    $options['form_params'] = json_decode(file_get_contents("php://input"),1);
+
+  if($proxyApi->getMode() === 'cv-elementor-web-hook-mode'){
+    foreach($_POST as $field=>$value)
+      $options['form_params'][str_replace('No_Label_','',$field)] = $value;
+
+    $options['form_params']['source'] = $_POST['form_name']??'undefined';
+  }
+
 }
 
 try {
