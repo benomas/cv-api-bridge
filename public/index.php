@@ -21,7 +21,6 @@ if($proxyApi->getHttpMethod() === 'POST'){
 
     $options['form_params']['source'] = $_POST['form_name']??'undefined';
   }
-
 }
 
 try {
